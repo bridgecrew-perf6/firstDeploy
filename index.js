@@ -1,11 +1,15 @@
 const express = require('express');
 
 const PORT = process.env.PORT || null;
+const SERVER_ENV = process.env.SERVER_ENV;
 
 const app = express();
 
 app.get('/', (req, res) => {
-    return res.status(501).end();
+    if (SERVER_ENV) {
+        return res.status(200).send(`Dummy endpoint running on enviroment ${SERVER_ENV}`)
+    }
+    return res.status(501).send(`Dummy endpoint`);
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
