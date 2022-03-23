@@ -6,8 +6,8 @@ const SERVER_ENV = process.env.SERVER_ENV;
 const app = express();
 
 app.get('/', (req, res) => {
-    if (SERVER_ENV) {
-        return res.status(200).send(`Dummy endpoint running on enviroment ${SERVER_ENV}`)
+    if (SERVER_ENV === 'test') {
+        return res.status(200).send(`Dummy endpoint running on enviroment ${SERVER_ENV} now with CICD`)
     }
     return res.status(501).send(`Dummy endpoint`);
 });
